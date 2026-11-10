@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claim $AMKT · Agent Market</title>
+<meta name="description" content="Claim $AMKT on Agent Market. Presale buyers claim what they bought, Stall holders claim 25,000 AMKT per Stall. Claims open when the presale ends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="icon" href="stall.jpg">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="https://agentmarket.exchange">AGENT MARKET</a>
+  <nav>
+    <a href="https://agentmarket.exchange#mint">Mint</a>
+    <a href="https://agentmarket.exchange#presale">Presale</a>
+    <a href="#claim">Claim</a>
+    <a href="#rules">Rules</a>
+  </nav>
+</header>
+
+<main id="claim">
+  <section class="hero">
+    <p class="kicker">CLAIM · BNB CHAIN</p>
+    <h1>Claim your <em>$AMKT</em>.</h1>
+    <p class="lede">Every Stall you hold is worth 25,000 $AMKT, and every presale purchase claims in full. Claims open when the presale ends and are settled by your Binance Agentic Wallet agent, straight to the same wallet. No claim fee.</p>
+  </section>
+
+  <section class="board" aria-label="Claim status">
+    <div class="stat"><span class="stat-num" id="cl-status">···</span><span class="stat-lab">Claim status</span></div>
+    <div class="stat wide"><span class="stat-num" id="cl-countdown">···</span><span class="stat-lab">Time until claims open</span></div>
+    <div class="stat"><span class="stat-num">25,000</span><span class="stat-lab">AMKT per Stall</span></div>
+  </section>
+
+  <section class="panel">
+    <p class="kicker">YOUR ALLOCATION</p>
+    <h2>Check a wallet.</h2>
+    <p>Paste any BNB Chain wallet address to read its position from the contracts. This page only reads the chain; claiming itself is done by your agent with the prompt below.</p>
+    <div class="checker">
+      <input id="wallet-input" type="text" placeholder="0x… wallet address" spellcheck="false">
+      <button class="btn" id="check-btn">Check</button>
+    </div>
+    <div class="rows" id="check-rows" hidden>
+      <div class="row"><span>Stalls held</span><span id="r-stalls">···</span></div>
+      <div class="row"><span>Holder allocation (25,000 per Stall)</span><span id="r-holder">···</span></div>
+      <div class="row"><span>Presale purchase (bought)</span><span id="r-bought">···</span></div>
+      <div class="row"><span>Total claimable</span><span id="r-claimable">···</span></div>
+      <div class="row"><span>Presale claim used</span><span id="r-pc">···</span></div>
+      <div class="row"><span>Holder claim used</span><span id="r-hc">···</span></div>
+    </div>
+    <p class="note" id="check-note"></p>
+  </section>
+
+  <section class="panel" id="rules">
+    <p class="kicker">THE RULES</p>
+    <h2>Three things to know.</h2>
+    <ol class="steps">
+      <li><strong>Step 01 · The rate</strong>1 Stall = 25,000 $AMKT, counted from the Stalls your wallet holds at the moment you claim. Presale purchases claim separately, at the full bought amount.</li>
+      <li><strong>Step 02 · Claim opens</strong>Claims open the moment the presale ends. The presale runs 14 days from its start, and the countdown above follows the on-chain end time.</li>
+      <li><strong>Step 03 · Claim</strong>Your Binance Agentic Wallet agent calls the claim functions and the $AMKT lands in the same wallet. Each of the two claims can be used once per wallet, and neither carries a fee.</li>
+    </ol>
+    <h3>Agent prompt · claim</h3>
+    <div class="prompt-box">
+      <pre id="claim-prompt">You are my Binance Agentic Wallet agent. Claim my $AMKT on Agent Market (BNB Chain, chain ID 56).
+
+Claim contract: 0xCE87A2D9b19b53197167136921AC16423CefDf8e
+Stall contract: 0x24C9191B529aC2aBAa19af4b11eBB1fdeB74D575
+
+Steps:
+1. Read endTime() (selector 0x3197cbb6). If the presale has not ended yet, tell me when claims open and stop.
+2. Read claimable(my wallet) (selector 0x402914f5), bought(my wallet) (selector 0x667022fd), and my Stall balance (balanceOf, selector 0x70a08231, on the Stall contract).
+3. If I bought in the presale and presaleClaimed(my wallet) (selector 0xf9765bc1) is false, call claimPresale() (selector 0x046ef9a5).
+4. If I hold Stalls and holderClaimed(my wallet) (selector 0xdd6f5c53) is false, call claimHolder() (selector 0x6f19bc8b). It pays 25,000 AMKT per Stall.
+5. Confirm my $AMKT balance afterwards and report what I received. Both claims are free, with no fee.</pre>
+      <button class="copy-btn" data-copy="claim-prompt">Copy prompt</button>
+    </div>
+    <p>Worked example: 10 Stalls = 250,000 AMKT. The most one wallet can hold is 25 Stalls, worth 625,000 AMKT, plus whatever it bought in the presale.</p>
+    <a class="btn alt" href="https://agentmarket.exchange">Mint a Stall first</a>
+  </section>
+
+  <footer>
+    <p class="foot-title">AGENT MARKET · CONTRACTS</p>
+    <p>Presale and claim · 0xCE87A2D9b19b53197167136921AC16423CefDf8e</p>
+    <p>Stall (NFT) · 0x24C9191B529aC2aBAa19af4b11eBB1fdeB74D575</p>
+    <p>$AMKT (token) · 0x31BBB7A5614D0eD465a93d1BAFCE28CE0225cDDe</p>
+    <p class="foot-note">Claims run through Binance Agentic Wallet agents. claim.agentmarket.exchange</p>
+  </footer>
+</main>
+<script src="js/app.js?v=1"></script>
+</body>
+</html>
