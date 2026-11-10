@@ -5,98 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claim $AMKT · Agent Market</title>
 <meta name="description" content="Claim $AMKT on Agent Market. Presale buyers claim what they bought, Stall holders claim 25,000 AMKT per Stall. Claims open when the presale ends.">
+<meta name="theme-color" content="#fbf3e8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..800&family=Funnel+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=6">
 <link rel="icon" href="stall.jpg">
 </head>
 <body>
-<header class="top">
+<header class="collar">
+  <span class="stitch" aria-hidden="true"></span>
   <a class="brand" href="https://agentmarket.exchange"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><line x1="8" y1="1" x2="11" y2="10" stroke="#b8ab8d" stroke-width="1.7" stroke-linecap="round"/><line x1="28" y1="1" x2="25" y2="10" stroke="#b8ab8d" stroke-width="1.7" stroke-linecap="round"/><circle cx="18" cy="1.6" r="1.4" fill="#b8ab8d"/><path d="M4 10 H32 L28.6 20.4 H7.4 Z" fill="#e8a90c"/><path d="M9.8 10 H13 L14.2 20.4 H11.8 Z" fill="#f2c230"/><path d="M16.4 10 H19.6 L19.2 20.4 H16.8 Z" fill="#f2c230"/><path d="M23 10 H26.2 L24.2 20.4 H21.8 Z" fill="#f2c230"/><circle cx="9.5" cy="22.4" r="2.1" fill="#f2c230"/><circle cx="14.2" cy="22.4" r="2.1" fill="#e8a90c"/><circle cx="18.9" cy="22.4" r="2.1" fill="#f2c230"/><circle cx="23.6" cy="22.4" r="2.1" fill="#e8a90c"/><circle cx="28.3" cy="22.4" r="2.1" fill="#f2c230"/></svg><span class="brand-text">AGENT MARKET</span></a>
-  <nav>
-    <a href="https://agentmarket.exchange#mint">Mint</a>
-    <a href="https://presale.agentmarket.exchange">Presale</a>
-    <a href="#claim">Claim</a>
-    <a href="#rules">Rules</a>
+  <nav class="links">
+    <a class="link" href="https://agentmarket.exchange#mint">Mint</a>
+    <a class="link" href="https://presale.agentmarket.exchange">Presale</a>
+    <a class="link" href="#claim" aria-current="page">Claim</a>
+    <a class="link" href="#rules">Rules</a>
   </nav>
-  <div class="slot" id="wallet-slot"></div>
+  <div class="right"><div class="slot" id="wallet-slot"></div></div>
 </header>
 
-<main id="claim">
-  <section class="hero">
-    <p class="kicker">CLAIM · BNB CHAIN</p>
+<main class="dp" id="claim">
+  <section class="cl-hero">
+    <span class="kicker">Claim · BNB Chain</span>
     <h1>Claim your <em>$AMKT</em>.</h1>
-    <p class="lede">Every Stall you hold is worth <strong>25,000 $AMKT</strong>, and every presale purchase claims in full. Claims open when the presale ends. Connect your wallet and claim here, or let your Binance Agentic Wallet agent settle it with the prompt below. No claim fee.</p>
+    <p class="lead">Every Stall you hold is worth <b>25,000 $AMKT</b>, and every presale purchase claims in full. Claim opens when the presale ends. Connect your wallet and claim here, or let your Binance Agentic Wallet agent settle it with the prompt below. No claim fee.</p>
+    <div>
+      <div class="clock">
+        <span class="clock-k">Claim opens in</span>
+        <div class="cd" aria-hidden="true">
+          <span><b id="cdD">––</b><i>Days</i></span>
+          <span><b id="cdH">––</b><i>Hours</i></span>
+          <span><b id="cdM">––</b><i>Minutes</i></span>
+          <span><b id="cdS">––</b><i>Seconds</i></span>
+        </div>
+        <span class="clock-d" id="cl-countdown">···</span>
+      </div>
+    </div>
   </section>
 
-  <section class="board" aria-label="Claim status">
-    <div class="stat"><span class="stat-num" id="cl-status">···</span><span class="stat-lab">Claim status</span></div>
-    <div class="stat wide"><span class="stat-num" id="cl-countdown">···</span><span class="stat-lab">Time until claims open</span></div>
-    <div class="stat"><span class="stat-num">25,000</span><span class="stat-lab">AMKT per Stall</span></div>
+  <section class="facts-band" aria-label="Claim status" style="grid-template-columns:repeat(3,1fr)">
+    <div><i>Claim status</i><b id="cl-status">···</b></div>
+    <div><i>AMKT per Stall</i><b>25,000</b></div>
+    <div><i>Claim fee</i><b>None</b><small>both claims, always</small></div>
   </section>
 
-  <section class="panel">
-    <p class="kicker">YOUR ALLOCATION</p>
-    <h2>Your $AMKT, counted live.</h2>
-    <div class="widget">
-      <p><span class="chip" id="clState">Not open yet</span></p>
-      <div class="rows">
-        <div class="row"><span>Stalls in this wallet</span><span id="held">–</span></div>
-      </div>
-      <div class="dots" id="dots"></div>
-      <div class="rows">
-        <div class="row"><span>Holder allocation (25,000 per Stall)</span><span id="r-holder">0 AMKT</span></div>
-        <div class="row"><span>Presale purchase (bought)</span><span id="r-bought">0 AMKT</span></div>
-        <div class="row"><span>Total claimable</span><span id="alloc">0 AMKT</span></div>
-        <div class="row"><span>Per Stall</span><span>25,000 $AMKT</span></div>
-      </div>
+  <section class="cl-grid">
+    <div class="console cl-console">
+      <div class="cl-top"><span class="cl-k">Your allocation</span><span class="cl-state" id="clState">Not open yet</span></div>
+      <div class="cl-big"><output id="alloc">0 AMKT</output></div>
+      <div class="cl-eyes" id="dots"></div>
+      <div class="cl-line"><span>Stalls in this wallet</span><span id="held">–</span></div>
+      <div class="cl-line"><span>Holder allocation (25,000 per Stall)</span><span id="r-holder">0 AMKT</span></div>
+      <div class="cl-line"><span>Presale purchase (bought)</span><span id="r-bought">0 AMKT</span></div>
+      <div class="cl-line"><span>Per Stall</span><span>25,000 $AMKT</span></div>
       <div class="claim-btns">
-        <button class="big-btn" id="claimPresaleBtn" type="button">Connect wallet</button>
-        <button class="big-btn" id="claimHolderBtn" type="button">Connect wallet</button>
+        <button class="go-btn" id="claimPresaleBtn" type="button">Connect wallet</button>
+        <button class="go-btn" id="claimHolderBtn" type="button">Connect wallet</button>
       </div>
       <p class="txline" id="txline" hidden></p>
-      <p class="note" id="clNote">Connect to see how many Stalls this wallet holds.</p>
+      <p class="fine" id="clNote" style="text-align:left">Connect to see how many Stalls this wallet holds.</p>
     </div>
 
-    <h3>Work it out</h3>
-    <p>How much for my Stalls?</p>
-    <div class="calc">
-      <input type="range" id="calcR" min="0" max="25" step="1" value="10">
-      <div class="calc-out">
-        <span><b class="num" id="calcN">10</b> Stalls</span>
-        <span class="cv"><span id="calcV">250,000</span> $AMKT</span>
+    <div class="cl-side">
+      <div class="calc">
+        <span class="kicker">Work it out</span>
+        <h3>How much for my Stalls?</h3>
+        <input type="range" id="calcR" min="0" max="25" step="1" value="10">
+        <div class="calc-out">
+          <span><b class="num" id="calcN">10</b> Stalls</span>
+          <span class="cv"><span id="calcV">250,000</span> <small>$AMKT</small></span>
+        </div>
+        <p class="fine">One wallet can hold up to 25 Stalls, worth 625,000 AMKT in the holder claim, plus whatever it bought in the presale.</p>
+        <a class="side-link" href="https://agentmarket.exchange#mint">Mint a Stall <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-7 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="console">
+        <div class="cl-top"><span class="cl-k">Check another wallet</span></div>
+        <p class="fine" style="text-align:left">Paste any BNB Chain wallet address to read its position from the contracts without connecting it.</p>
+        <div class="checker">
+          <input id="wallet-input" type="text" placeholder="0x… wallet address" spellcheck="false">
+          <button class="chip-btn" id="check-btn" type="button">Check</button>
+        </div>
+        <div id="check-rows" hidden>
+          <div class="cl-line"><span>Stalls held</span><span id="r-stalls">···</span></div>
+          <div class="cl-line"><span>Holder allocation (25,000 per Stall)</span><span id="r-holder2">···</span></div>
+          <div class="cl-line"><span>Presale purchase (bought)</span><span id="r-bought2">···</span></div>
+          <div class="cl-line"><span>Total claimable</span><span id="r-claimable">···</span></div>
+          <div class="cl-line"><span>Presale claim used</span><span id="r-pc">···</span></div>
+          <div class="cl-line"><span>Holder claim used</span><span id="r-hc">···</span></div>
+        </div>
+        <p class="note" id="check-note"></p>
       </div>
     </div>
-    <p class="note">One wallet can hold up to 25 Stalls, worth 625,000 AMKT in the holder claim, plus whatever it bought in the presale.</p>
-
-    <h3>Check another wallet</h3>
-    <p>Paste any BNB Chain wallet address to read its position from the contracts without connecting it.</p>
-    <div class="checker">
-      <input id="wallet-input" type="text" placeholder="0x… wallet address" spellcheck="false">
-      <button class="btn" id="check-btn" type="button">Check</button>
-    </div>
-    <div class="rows" id="check-rows" hidden>
-      <div class="row"><span>Stalls held</span><span id="r-stalls">···</span></div>
-      <div class="row"><span>Holder allocation (25,000 per Stall)</span><span id="r-holder2">···</span></div>
-      <div class="row"><span>Presale purchase (bought)</span><span id="r-bought2">···</span></div>
-      <div class="row"><span>Total claimable</span><span id="r-claimable">···</span></div>
-      <div class="row"><span>Presale claim used</span><span id="r-pc">···</span></div>
-      <div class="row"><span>Holder claim used</span><span id="r-hc">···</span></div>
-    </div>
-    <p class="note" id="check-note"></p>
   </section>
 
-  <section class="panel" id="rules">
-    <p class="kicker">THE RULES</p>
-    <h2>Three things to know.</h2>
-    <ol class="steps">
-      <li><strong>Step 01 · The rate</strong>1 Stall = 25,000 $AMKT, counted from the Stalls your wallet holds at the moment you claim. Presale purchases claim separately, at the full bought amount.</li>
-      <li><strong>Step 02 · Claim opens</strong>Claims open the moment the presale ends. The presale runs 14 days from its start, and the countdown above follows the on-chain end time.</li>
-      <li><strong>Step 03 · Claim</strong>Connect on BNB Chain, press Claim, and the $AMKT lands in the same wallet. Each of the two claims can be used once per wallet, and neither carries a fee.</li>
-    </ol>
-    <p>One wallet, up to <strong>25 Stalls</strong>, up to <strong>625,000 AMKT</strong> from the holder claim, plus its presale purchase. Claim on <strong>BNB Chain</strong>.</p>
-    <h3>Agent prompt · claim</h3>
+  <section class="rules" id="rules">
+    <div class="sec-h">
+      <span class="kicker">The rules</span>
+      <h2>Three things to know.</h2>
+    </div>
+    <div class="rule-board">
+      <div class="rule-track">
+        <div class="rule">
+          <span class="dot">01</span>
+          <small>Step 01 · The rate</small>
+          <b>1 Stall = <em>25,000</em> $AMKT</b>
+          <p>Counted from the Stalls your wallet holds at the moment you claim. Presale purchases claim separately, at the full bought amount.</p>
+        </div>
+        <div class="rule">
+          <span class="dot">02</span>
+          <small>Step 02 · Claim opens</small>
+          <b>Presale <em>ends</em></b>
+          <p>Claims open the moment the presale ends. The presale runs 14 days from its start, and the countdown above follows the on-chain end time.</p>
+        </div>
+        <div class="rule">
+          <span class="dot">03</span>
+          <small>Step 03 · Claim</small>
+          <b>Straight to <em>your wallet</em></b>
+          <p>Connect on BNB Chain, press Claim, and the $AMKT lands in the same wallet. Each of the two claims can be used once per wallet, and neither carries a fee.</p>
+        </div>
+      </div>
+      <div class="rule-foot">
+        <span>One wallet, up to <strong>25 Stalls</strong>, up to <strong>625,000 AMKT</strong> from the holder claim, plus its presale purchase.</span>
+        <span>Claim on <strong>BNB Chain</strong>.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h">
+      <span class="kicker">Agent prompt · Claim</span>
+      <h2>Or let your agent claim.</h2>
+    </div>
     <div class="prompt-box">
       <pre id="claim-prompt">You are my Binance Agentic Wallet agent. Claim my $AMKT on Agent Market (BNB Chain, chain ID 56).
 
@@ -111,18 +152,33 @@ Steps:
 5. Confirm my $AMKT balance afterwards and report what I received. Both claims are free, with no fee.</pre>
       <button class="copy-btn" data-copy="claim-prompt">Copy prompt</button>
     </div>
-    <a class="btn alt" href="https://agentmarket.exchange#mint">Mint a Stall first</a>
+    <a class="tagbtn orange" href="https://agentmarket.exchange#mint" style="margin-top:26px">Mint a Stall first <span class="arr">→</span></a>
   </section>
-
-  <footer>
-    <p class="foot-title">AGENT MARKET · CONTRACTS</p>
-    <p>Presale and claim · 0xA6Ef01e926eFbD35661e7B1d3E1CBeE360750b16</p>
-    <p>Stall (NFT) · 0xE3dE7fD0d12cFF4a46d8Bf702Ab593B6f921b308</p>
-    <p>$AMKT (token) · 0x31BBB7A5614D0eD465a93d1BAFCE28CE0225cDDe</p>
-    <p class="foot-note">Claim on this page with your wallet, or through your Binance Agentic Wallet agent. claim.agentmarket.exchange</p>
-  </footer>
 </main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div class="foot-brand">
+      <a class="brand" href="https://agentmarket.exchange"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><line x1="8" y1="1" x2="11" y2="10" stroke="#b8ab8d" stroke-width="1.7" stroke-linecap="round"/><line x1="28" y1="1" x2="25" y2="10" stroke="#b8ab8d" stroke-width="1.7" stroke-linecap="round"/><circle cx="18" cy="1.6" r="1.4" fill="#b8ab8d"/><path d="M4 10 H32 L28.6 20.4 H7.4 Z" fill="#e8a90c"/><path d="M9.8 10 H13 L14.2 20.4 H11.8 Z" fill="#f2c230"/><path d="M16.4 10 H19.6 L19.2 20.4 H16.8 Z" fill="#f2c230"/><path d="M23 10 H26.2 L24.2 20.4 H21.8 Z" fill="#f2c230"/><circle cx="9.5" cy="22.4" r="2.1" fill="#f2c230"/><circle cx="14.2" cy="22.4" r="2.1" fill="#e8a90c"/><circle cx="18.9" cy="22.4" r="2.1" fill="#f2c230"/><circle cx="23.6" cy="22.4" r="2.1" fill="#e8a90c"/><circle cx="28.3" cy="22.4" r="2.1" fill="#f2c230"/></svg><span class="brand-text">AGENT MARKET</span></a>
+      <p>Claim on this page with your wallet, or through your Binance Agentic Wallet agent.</p>
+      <div class="foot-contracts">
+        <span><b>Presale and claim</b> · 0xA6Ef01e926eFbD35661e7B1d3E1CBeE360750b16</span>
+        <span><b>Stall (NFT)</b> · 0xE3dE7fD0d12cFF4a46d8Bf702Ab593B6f921b308</span>
+        <span><b>$AMKT (token)</b> · 0x31BBB7A5614D0eD465a93d1BAFCE28CE0225cDDe</span>
+      </div>
+    </div>
+    <nav class="foot-links">
+      <a href="https://agentmarket.exchange#mint">Mint</a>
+      <a href="https://presale.agentmarket.exchange">Presale</a>
+      <a href="#claim">Claim</a>
+      <a href="#rules">Rules</a>
+    </nav>
+  </div>
+  <div class="foot-base"><span>claim.agentmarket.exchange</span><span>BNB Chain · Chain ID 56</span></div>
+</footer>
+
 <script src="js/wallet.js?v=1"></script>
 <script src="js/app.js?v=3"></script>
+<script src="js/clock.js?v=6"></script>
 </body>
 </html>
