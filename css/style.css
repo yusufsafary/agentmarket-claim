@@ -437,6 +437,7 @@ b, strong { font-weight: 700; }
 .cl-state.open { background: rgba(79, 138, 99, .14); color: var(--good); }
 .cl-big { display: flex; align-items: baseline; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
 .coin-ic { width: 22px; height: 22px; border-radius: 50%; vertical-align: -5px; }
+.coin-ic-s { width: 15px; height: 15px; border-radius: 50%; vertical-align: -2px; margin-right: 5px; }
 .coin-ic-xl { width: 46px; height: 46px; border-radius: 50%; flex: none; align-self: center; }
 .calc-out .cv { display: inline-flex; align-items: center; gap: 7px; }
 .cl-big output { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 5.4vw, 60px); letter-spacing: -.04em; line-height: 1; }
