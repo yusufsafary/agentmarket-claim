@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=3">
 <link rel="icon" href="stall.jpg">
 </head>
 <body>
@@ -16,17 +16,18 @@
   <a class="brand" href="https://agentmarket.exchange">AGENT MARKET</a>
   <nav>
     <a href="https://agentmarket.exchange#mint">Mint</a>
-    <a href="https://agentmarket.exchange#presale">Presale</a>
+    <a href="https://presale.agentmarket.exchange">Presale</a>
     <a href="#claim">Claim</a>
     <a href="#rules">Rules</a>
   </nav>
+  <div class="slot" id="wallet-slot"></div>
 </header>
 
 <main id="claim">
   <section class="hero">
     <p class="kicker">CLAIM · BNB CHAIN</p>
     <h1>Claim your <em>$AMKT</em>.</h1>
-    <p class="lede">Every Stall you hold is worth 25,000 $AMKT, and every presale purchase claims in full. Claims open when the presale ends and are settled by your Binance Agentic Wallet agent, straight to the same wallet. No claim fee.</p>
+    <p class="lede">Every Stall you hold is worth <strong>25,000 $AMKT</strong>, and every presale purchase claims in full. Claims open when the presale ends. Connect your wallet and claim here, or let your Binance Agentic Wallet agent settle it with the prompt below. No claim fee.</p>
   </section>
 
   <section class="board" aria-label="Claim status">
@@ -37,16 +38,48 @@
 
   <section class="panel">
     <p class="kicker">YOUR ALLOCATION</p>
-    <h2>Check a wallet.</h2>
-    <p>Paste any BNB Chain wallet address to read its position from the contracts. This page only reads the chain; claiming itself is done by your agent with the prompt below.</p>
+    <h2>Your $AMKT, counted live.</h2>
+    <div class="widget">
+      <p><span class="chip" id="clState">Not open yet</span></p>
+      <div class="rows">
+        <div class="row"><span>Stalls in this wallet</span><span id="held">–</span></div>
+      </div>
+      <div class="dots" id="dots"></div>
+      <div class="rows">
+        <div class="row"><span>Holder allocation (25,000 per Stall)</span><span id="r-holder">0 AMKT</span></div>
+        <div class="row"><span>Presale purchase (bought)</span><span id="r-bought">0 AMKT</span></div>
+        <div class="row"><span>Total claimable</span><span id="alloc">0 AMKT</span></div>
+        <div class="row"><span>Per Stall</span><span>25,000 $AMKT</span></div>
+      </div>
+      <div class="claim-btns">
+        <button class="big-btn" id="claimPresaleBtn" type="button">Connect wallet</button>
+        <button class="big-btn" id="claimHolderBtn" type="button">Connect wallet</button>
+      </div>
+      <p class="txline" id="txline" hidden></p>
+      <p class="note" id="clNote">Connect to see how many Stalls this wallet holds.</p>
+    </div>
+
+    <h3>Work it out</h3>
+    <p>How much for my Stalls?</p>
+    <div class="calc">
+      <input type="range" id="calcR" min="0" max="25" step="1" value="10">
+      <div class="calc-out">
+        <span><b class="num" id="calcN">10</b> Stalls</span>
+        <span class="cv"><span id="calcV">250,000</span> $AMKT</span>
+      </div>
+    </div>
+    <p class="note">One wallet can hold up to 25 Stalls, worth 625,000 AMKT in the holder claim, plus whatever it bought in the presale.</p>
+
+    <h3>Check another wallet</h3>
+    <p>Paste any BNB Chain wallet address to read its position from the contracts without connecting it.</p>
     <div class="checker">
       <input id="wallet-input" type="text" placeholder="0x… wallet address" spellcheck="false">
-      <button class="btn" id="check-btn">Check</button>
+      <button class="btn" id="check-btn" type="button">Check</button>
     </div>
     <div class="rows" id="check-rows" hidden>
       <div class="row"><span>Stalls held</span><span id="r-stalls">···</span></div>
-      <div class="row"><span>Holder allocation (25,000 per Stall)</span><span id="r-holder">···</span></div>
-      <div class="row"><span>Presale purchase (bought)</span><span id="r-bought">···</span></div>
+      <div class="row"><span>Holder allocation (25,000 per Stall)</span><span id="r-holder2">···</span></div>
+      <div class="row"><span>Presale purchase (bought)</span><span id="r-bought2">···</span></div>
       <div class="row"><span>Total claimable</span><span id="r-claimable">···</span></div>
       <div class="row"><span>Presale claim used</span><span id="r-pc">···</span></div>
       <div class="row"><span>Holder claim used</span><span id="r-hc">···</span></div>
@@ -60,8 +93,9 @@
     <ol class="steps">
       <li><strong>Step 01 · The rate</strong>1 Stall = 25,000 $AMKT, counted from the Stalls your wallet holds at the moment you claim. Presale purchases claim separately, at the full bought amount.</li>
       <li><strong>Step 02 · Claim opens</strong>Claims open the moment the presale ends. The presale runs 14 days from its start, and the countdown above follows the on-chain end time.</li>
-      <li><strong>Step 03 · Claim</strong>Your Binance Agentic Wallet agent calls the claim functions and the $AMKT lands in the same wallet. Each of the two claims can be used once per wallet, and neither carries a fee.</li>
+      <li><strong>Step 03 · Claim</strong>Connect on BNB Chain, press Claim, and the $AMKT lands in the same wallet. Each of the two claims can be used once per wallet, and neither carries a fee.</li>
     </ol>
+    <p>One wallet, up to <strong>25 Stalls</strong>, up to <strong>625,000 AMKT</strong> from the holder claim, plus its presale purchase. Claim on <strong>BNB Chain</strong>.</p>
     <h3>Agent prompt · claim</h3>
     <div class="prompt-box">
       <pre id="claim-prompt">You are my Binance Agentic Wallet agent. Claim my $AMKT on Agent Market (BNB Chain, chain ID 56).
@@ -77,8 +111,7 @@ Steps:
 5. Confirm my $AMKT balance afterwards and report what I received. Both claims are free, with no fee.</pre>
       <button class="copy-btn" data-copy="claim-prompt">Copy prompt</button>
     </div>
-    <p>Worked example: 10 Stalls = 250,000 AMKT. The most one wallet can hold is 25 Stalls, worth 625,000 AMKT, plus whatever it bought in the presale.</p>
-    <a class="btn alt" href="https://agentmarket.exchange">Mint a Stall first</a>
+    <a class="btn alt" href="https://agentmarket.exchange#mint">Mint a Stall first</a>
   </section>
 
   <footer>
@@ -86,9 +119,10 @@ Steps:
     <p>Presale and claim · 0xA6Ef01e926eFbD35661e7B1d3E1CBeE360750b16</p>
     <p>Stall (NFT) · 0xE3dE7fD0d12cFF4a46d8Bf702Ab593B6f921b308</p>
     <p>$AMKT (token) · 0x31BBB7A5614D0eD465a93d1BAFCE28CE0225cDDe</p>
-    <p class="foot-note">Claims run through Binance Agentic Wallet agents. claim.agentmarket.exchange</p>
+    <p class="foot-note">Claim on this page with your wallet, or through your Binance Agentic Wallet agent. claim.agentmarket.exchange</p>
   </footer>
 </main>
-<script src="js/app.js?v=2"></script>
+<script src="js/wallet.js?v=1"></script>
+<script src="js/app.js?v=3"></script>
 </body>
 </html>
