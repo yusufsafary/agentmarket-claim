@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..800&family=Funnel+Sans:wght@400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/style.css?v=10">
 <link rel="icon" type="image/svg+xml" href="img/logo.svg">
 </head>
 <body>
@@ -66,7 +66,7 @@
   <section class="cl-grid">
     <div class="console cl-console">
       <div class="cl-top"><span class="cl-k">Your allocation</span><span class="cl-state" id="clState">Not open yet</span></div>
-      <div class="cl-big"><output id="alloc">0 AMKT</output></div>
+      <div class="cl-big"><img class="coin-ic-xl" src="img/amkt.png" alt=""><output id="alloc">0 AMKT</output></div>
       <div class="cl-eyes" id="dots"></div>
       <div class="cl-line"><span>Stalls in this wallet</span><span id="held">–</span></div>
       <div class="cl-line"><span>Holder allocation, open now (25,000 per Stall)</span><span id="r-holder">0 AMKT</span></div>
@@ -87,7 +87,7 @@
         <input type="range" id="calcR" min="0" max="25" step="1" value="10">
         <div class="calc-out">
           <span><b class="num" id="calcN">10</b> Stalls</span>
-          <span class="cv"><span id="calcV">250,000</span> <small>$AMKT</small></span>
+          <span class="cv"><img class="coin-ic" src="img/amkt.png" alt=""><span id="calcV">250,000</span> <small>$AMKT</small></span>
         </div>
         <p class="fine">One wallet can hold up to 25 Stalls, worth 625,000 AMKT in the holder claim, plus whatever it bought in the presale.</p>
         <a class="side-link" href="https://agentmarket.exchange#mint">Mint a Stall <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-7 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
